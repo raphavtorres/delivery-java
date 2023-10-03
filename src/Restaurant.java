@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Restaurant {
     private String name;
     private String cnpj;
-    private ArrayList<Integer> location = new ArrayList<>();
+    private ArrayList<Integer> location;
     private ArrayList<Food> menu = new ArrayList<>();
 
     public Restaurant(String name, String cnpj, ArrayList<Integer> location) {
@@ -45,18 +45,17 @@ public class Restaurant {
     }
 
     // PRINT MENU
-    public ArrayList<Food> printMenu() {
+    public ArrayList<Food> showMenu() {
         return menu;
     }
 
     // ADD FOOD TO MENU
-    public void addFood(String name, Float price) {
-        Food food = new Food(name, price);
+    public void addFood(Food food) {
         menu.add(food);
     }
 
     // REMOVE FOOD TO MENU
-    public void removeFood(Food food) {
-        menu.remove(food);
+    public void removeFood(int idFood) {
+        menu.remove(idFood);
     }
 }

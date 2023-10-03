@@ -21,19 +21,27 @@ public class App {
         return orders;
     }
 
-    public void addUser(String name, String cpf, ArrayList<Integer> address) {
-        User user = new User(name, cpf, address);
+    public void addUser(String name, String cpf, String password, ArrayList<Integer> address) {
+        User user = new User(name, cpf, password, address);
         users.add(user);
     }
 
-//    public void addRestaurant(String name, String cnpj, ArrayList<Integer> position) {
-//        Restaurant restaurant = new Restaurant(name, cnpj, position);
-//        restaurants.add(restaurant);
-//    }
+    public void login(String name, String password) {
+        // ...
+    }
 
-    public void createOrder() {
-        // After pass id user instead of 0
-        Order order = new Order(getRestaurant(), getUsers().get(0));
+    public void createOrder(int user) {
+        Order order = new Order(getRestaurant(), getUsers().get(user));
         orders.add(order);
     }
+
+    public void createFood(String name, float price) {
+        Food food = new Food(name, price);
+        restaurant.addFood(food);
+    }
+
+    //    public void addRestaurant(String name, String cnpj, ArrayList<Integer> position) {
+    //        Restaurant restaurant = new Restaurant(name, cnpj, position);
+    //        restaurants.add(restaurant);
+    //    }
 }
