@@ -1,32 +1,29 @@
 package screens;
-import components.ImagePanel;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CartScreen extends Screen implements ActionListener {
-    public CartScreen() {
-        // File path background image
-        String imagePath = "C:\\Users\\rapha\\OneDrive\\Área de Trabalho\\delivery-java\\src\\images\\cart-img.png";
+    JButton btn = new JButton();
+    public CartScreen(String path) {
+        super(path);
 
-        ImagePanel imagePanel = new ImagePanel(imagePath);
-        imagePanel.setBounds(0, 0, 428, 926);
-        add(imagePanel);
-
-        // tirar texto
         btn.setBounds(198, 302, 150,40);
-        btn.setOpaque(false);  // btn transparent
-//        btn.setContentAreaFilled(false);  // Remove a área preenchida do botão
-//        btn.setBorderPainted(false);  // Remove a borda do botão
+//        btn.setOpaque(false);  // btn transparent
+        btn.setBackground(Color.red);
         btn.addActionListener(this);
         add(btn);
+
+        setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btn) {
             dispose();
-            new MenuScreen();
+            new MenuScreen("menu-img.png");
         }
     }
 }
