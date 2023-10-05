@@ -1,7 +1,7 @@
-import javax.swing.*;
+import screens.CartScreen;
 
 public class Main {
     public static void main(String[] args) {
-        new Screen();
+        new CartScreen();
     }
 }
