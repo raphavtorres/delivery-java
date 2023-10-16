@@ -15,19 +15,21 @@ public class Screen extends JFrame {
     public static ArrayList<User> users = new ArrayList<>();
 
     // LIST FOOD
-    public static ArrayList<Food> foods = new ArrayList<>();
-    Food food1 = new Food("food1", 20.09F);
-    Food food2 = new Food("food2", 30.09F);
-    Food food3 = new Food("food3", 40.09F);
-
+    public static Food food1 = new Food(1, "food1", 20.09F);
+    public static Food food2 = new Food(2, "food2", 30.09F);
+    public static Food food3 = new Food(3, "food3", 40.09F);
+    public static ArrayList<Food> foods = new ArrayList<>() {
+        {
+            add(food1);
+            add(food2);
+            add(food3);
+        }
+    };
 
     // CURRENT USER
     public static User currentUser;
 
     public Screen(String path) {
-        foods.add(food1);
-        foods.add(food2);
-        foods.add(food3);
         setTitle("Pizzaria Torres");
 
         setSize(440, 965);
@@ -58,8 +60,8 @@ public class Screen extends JFrame {
         return foods;
     }
 
-    public static void setFoods(ArrayList<Food> foods) {
-        Screen.foods = foods;
+    public static void setFoods(Food food) {
+        foods.add(food);
     }
 
     public static User getCurrentUser() {

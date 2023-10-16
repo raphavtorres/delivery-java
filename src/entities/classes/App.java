@@ -37,8 +37,8 @@ public class App {
         orders.add(order);
     }
 
-    public void createFood(String name, float price) {
-        Food food = new Food(name, price);
+    public void createFood(int id, String name, float price) {
+        Food food = new Food(id, name, price);
         restaurant.addFood(food);
     }
 

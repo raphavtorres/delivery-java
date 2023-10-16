@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoginScreen extends Screen implements ActionListener {
-
-    IDandPasswords idandPass = new IDandPasswords();
     JButton loginBtn = new JButton("Login");
     JTextField userNameField = new JTextField();
     JPasswordField userPassField = new JPasswordField();
@@ -19,7 +17,6 @@ public class LoginScreen extends Screen implements ActionListener {
 
     public LoginScreen(String path) {
         super(path);
-        loginInfo = idandPass.getLoginInfo();
 
         userNameField.setBounds(45, 337, 335, 45);
         userNameField.setBackground(Color.red);

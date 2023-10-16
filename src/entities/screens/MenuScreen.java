@@ -21,9 +21,9 @@ public class MenuScreen extends Screen implements ActionListener {
     public MenuScreen(String path) {
         super(path);
 
-        model = new DefaultTableModel(new Object[]{"Nome", "Preço"},0);
+        model = new DefaultTableModel(new Object[]{"ID", "Nome", "Preço"},0);
         for (Food food : getFoods()) {
-            Object[] row = {food.getName(), food.getPrice()};
+            Object[] row = {food.getId(), food.getName(), food.getPrice()};
             model.addRow(row);
         }
 
