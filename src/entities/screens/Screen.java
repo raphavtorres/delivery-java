@@ -1,5 +1,6 @@
 package entities.screens;
 
+import entities.classes.Food;
 import entities.classes.User;
 
 import javax.swing.*;
@@ -11,11 +12,22 @@ public class Screen extends JFrame {
     JLabel bgLabel;
 
     // LIST USERS
-    ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<User> users = new ArrayList<>();
 
     // LIST FOOD
+    public static ArrayList<Food> foods = new ArrayList<>();
+    Food food1 = new Food("food1", 20.09F);
+    Food food2 = new Food("food2", 30.09F);
+    Food food3 = new Food("food3", 40.09F);
+
+
+    // CURRENT USER
+    public static User currentUser;
 
     public Screen(String path) {
+        foods.add(food1);
+        foods.add(food2);
+        foods.add(food3);
         setTitle("Pizzaria Torres");
 
         setSize(440, 965);
@@ -40,7 +52,21 @@ public class Screen extends JFrame {
 
     public void setUsers(User user) {
         users.add(user);
-        System.out.println(users);
-        System.out.println(getUsers().get(0).getName());
+    }
+
+    public static ArrayList<Food> getFoods() {
+        return foods;
+    }
+
+    public static void setFoods(ArrayList<Food> foods) {
+        Screen.foods = foods;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        Screen.currentUser = currentUser;
     }
 }

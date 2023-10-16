@@ -39,36 +39,21 @@ public class LoginScreen extends Screen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if(e.getSource()==loginBtn) {
-//            String userName = userNameField.getText();
-//            String pass = String.valueOf(userPassField.getPassword());
-//
-//            if(loginInfo.containsKey(userName) && loginInfo.get(userName).equals(pass)) {
-//                dispose();
-//                new MenuScreen("menu-img.png");
-//            } else {
-//                userNameField.setText("");
-//                userPassField.setText("");
-//            }
-//        }
         if(e.getSource()==loginBtn) {
             String userName = userNameField.getText();
             String pass = String.valueOf(userPassField.getPassword());
             ArrayList<User> users = getUsers();
-            System.out.println("aaaaaaaaaa");
-            System.out.println(getUsers().get(0).getName());
-            for(User user : users) {
-                System.out.println("User: " + user.getName());
-                System.out.println("Pass: " + user.getPassword());
-            }
 
-//            if(loginInfo.containsKey(userName) && loginInfo.get(userName).equals(pass)) {
-//                dispose();
-//                new MenuScreen("menu-img.png");
-//            } else {
-//                userNameField.setText("");
-//                userPassField.setText("");
-//            }
+            for(User user : users) {
+                if(user.getName().equals(userName) && user.getPassword().equals(pass)) {
+                    setCurrentUser(user);
+                    dispose();
+                    new MenuScreen("menu-img.png");
+                } else {
+                    userNameField.setText("");
+                    userPassField.setText("");
+                }
+            }
         }
     }
 }
