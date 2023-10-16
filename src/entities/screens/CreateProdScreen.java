@@ -42,7 +42,7 @@ public class CreateProdScreen extends App implements ActionListener {
         if(e.getSource()==signInBtn) {
             getCurrentRestaurant().addFood(new Food(id, prodNameText, price));
             dispose();
-            new MenuScreen("menu-img.png");
+            new MenuScreen("menu-restaurant-img.png");
         }
     }
 }
