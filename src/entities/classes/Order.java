@@ -1,4 +1,4 @@
-package entities;
+package entities.classes;
 
 public class Order {
     private Restaurant restaurant;

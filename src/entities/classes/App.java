@@ -1,4 +1,4 @@
-package entities;
+package entities.classes;
 
 import java.util.ArrayList;
 
@@ -43,7 +43,7 @@ public class App {
     }
 
     //    public void addRestaurant(String name, String cnpj, ArrayList<Integer> position) {
-    //        entities.Restaurant restaurant = new entities.Restaurant(name, cnpj, position);
+    //        entities.classes.Restaurant restaurant = new entities.classes.Restaurant(name, cnpj, position);
     //        restaurants.add(restaurant);
     //    }
 }

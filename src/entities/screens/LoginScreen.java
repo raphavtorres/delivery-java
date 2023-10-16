@@ -1,9 +1,12 @@
 package entities.screens;
 
+import entities.classes.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoginScreen extends Screen implements ActionListener {
@@ -12,7 +15,7 @@ public class LoginScreen extends Screen implements ActionListener {
     JButton loginBtn = new JButton("Login");
     JTextField userNameField = new JTextField();
     JPasswordField userPassField = new JPasswordField();
-    HashMap<String, String> loginInfo = new HashMap<>();
+    HashMap<String, String> loginInfo;
 
     public LoginScreen(String path) {
         super(path);
@@ -36,17 +39,36 @@ public class LoginScreen extends Screen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+//        if(e.getSource()==loginBtn) {
+//            String userName = userNameField.getText();
+//            String pass = String.valueOf(userPassField.getPassword());
+//
+//            if(loginInfo.containsKey(userName) && loginInfo.get(userName).equals(pass)) {
+//                dispose();
+//                new MenuScreen("menu-img.png");
+//            } else {
+//                userNameField.setText("");
+//                userPassField.setText("");
+//            }
+//        }
         if(e.getSource()==loginBtn) {
             String userName = userNameField.getText();
             String pass = String.valueOf(userPassField.getPassword());
-
-            if(loginInfo.containsKey(userName) && loginInfo.get(userName).equals(pass)) {
-                dispose();
-                new MenuScreen("menu-img.png");
-            } else {
-                userNameField.setText("");
-                userPassField.setText("");
+            ArrayList<User> users = getUsers();
+            System.out.println("aaaaaaaaaa");
+            System.out.println(getUsers().get(0).getName());
+            for(User user : users) {
+                System.out.println("User: " + user.getName());
+                System.out.println("Pass: " + user.getPassword());
             }
+
+//            if(loginInfo.containsKey(userName) && loginInfo.get(userName).equals(pass)) {
+//                dispose();
+//                new MenuScreen("menu-img.png");
+//            } else {
+//                userNameField.setText("");
+//                userPassField.setText("");
+//            }
         }
     }
 }
