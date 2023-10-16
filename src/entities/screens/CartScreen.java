@@ -23,14 +23,9 @@ public class CartScreen extends Screen implements ActionListener {
     DefaultTableModel model;
     JTable table;
     JScrollPane scrollPane;
+    JLabel totalPriceLb = new JLabel();
     User user = getCurrentUser();
-//    ArrayList<Integer> address = new ArrayList<>() {
-//    {
-//        add(1);
-//        add(1);
-//    }
-//};
-//    User user = new User("123", "123123", "123", address);
+
     public CartScreen(String path) {
         super(path);
 
@@ -67,6 +62,10 @@ public class CartScreen extends Screen implements ActionListener {
             bgLabel.add(panel);
         }
 
+        totalPriceLb.setText("TOTAL");
+        totalPriceLb.setBounds(140, 713, 178,50);
+        totalPriceLb.setForeground(new Color(0x00FF00));
+        bgLabel.add(totalPriceLb);
 
         endBtn.setBounds(122, 767, 178,50);
         endBtn.setBackground(Color.red);
