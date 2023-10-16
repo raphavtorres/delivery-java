@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CreateProdScreen extends Screen implements ActionListener {
+public class CreateProdScreen extends App implements ActionListener {
     JTextField prodName = new JTextField();
     JTextField prodPrice = new JTextField(10);
     JButton signInBtn = new JButton("CADASTRAR");
@@ -35,12 +35,12 @@ public class CreateProdScreen extends Screen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int id = getFoods().size() + 1;
+        int id = getCurrentRestaurant().getMenu().size() + 1;
         String prodNameText = prodName.getText();
         Float price = Float.parseFloat(prodPrice.getText());
 
         if(e.getSource()==signInBtn) {
-            setFoods(new Food(id, prodNameText, price));
+            getCurrentRestaurant().addFood(new Food(id, prodNameText, price));
             dispose();
             new MenuScreen("menu-img.png");
         }

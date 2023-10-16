@@ -1,35 +1,31 @@
 package entities.screens;
 
 import entities.classes.Food;
+import entities.classes.Restaurant;
 import entities.classes.User;
 
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Screen extends JFrame {
+public class App extends JFrame {
     ImageIcon backgroundImg;
     JLabel bgLabel;
 
     // LIST USERS
     public static ArrayList<User> users = new ArrayList<>();
 
-    // LIST FOOD
-    public static Food food1 = new Food(1, "food1", 20.09F);
-    public static Food food2 = new Food(2, "food2", 30.09F);
-    public static Food food3 = new Food(3, "food3", 40.09F);
-    public static ArrayList<Food> foods = new ArrayList<>() {
-        {
-            add(food1);
-            add(food2);
-            add(food3);
-        }
-    };
+    // LIST RESTAURANTS
+    public static ArrayList<Restaurant> restaurants = new ArrayList<>();
+
+
 
     // CURRENT USER
     public static User currentUser;
+    // CURRENT RESTAURANT
+    public static Restaurant currentRestaurant;
 
-    public Screen(String path) {
+    public App(String path) {
         setTitle("Pizzaria Torres");
 
         setSize(440, 965);
@@ -56,19 +52,28 @@ public class Screen extends JFrame {
         users.add(user);
     }
 
-    public static ArrayList<Food> getFoods() {
-        return foods;
+    public ArrayList<Restaurant> getRestaurants() {
+        return restaurants;
     }
 
-    public static void setFoods(Food food) {
-        foods.add(food);
+    public void setRestaurants(Restaurant restaurant) {
+        restaurants.add(restaurant);
     }
+
 
     public static User getCurrentUser() {
         return currentUser;
     }
 
     public static void setCurrentUser(User currentUser) {
-        Screen.currentUser = currentUser;
+        App.currentUser = currentUser;
+    }
+
+    public static Restaurant getCurrentRestaurant() {
+        return currentRestaurant;
+    }
+
+    public static void setCurrentRestaurant(Restaurant currentRestaurant) {
+        App.currentRestaurant = currentRestaurant;
     }
 }

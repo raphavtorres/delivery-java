@@ -5,9 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomeScreen extends Screen implements ActionListener {
+public class HomeScreen extends App implements ActionListener {
     JButton goToLoginBtn = new JButton("Login");
-    JButton goToSignUpBtn = new JButton("Cadastrar");
+    JButton goToSignUpBtn = new JButton("Cad User");
+    JButton goToCreateRest = new JButton("Cad Rest");
     public HomeScreen(String path) {
         super(path);
 
@@ -22,6 +23,11 @@ public class HomeScreen extends Screen implements ActionListener {
         goToSignUpBtn.addActionListener(this);
         add(goToSignUpBtn);
 
+        goToCreateRest.setBounds(120, 820, 185,50);
+        goToCreateRest.setBackground(Color.green);
+        goToCreateRest.addActionListener(this);
+        add(goToCreateRest);
+
         setVisible(true);
     }
 
@@ -33,6 +39,9 @@ public class HomeScreen extends Screen implements ActionListener {
         }else if(e.getSource()==goToSignUpBtn) {
             dispose();
             new SignUpScreen("createUser-img.png");
+        }else if(e.getSource()==goToCreateRest) {
+            dispose();
+            new CreateRestaurantScreen("createRestaurant-img.png");
         }
     }
 }

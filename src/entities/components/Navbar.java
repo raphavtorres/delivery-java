@@ -3,7 +3,7 @@ package entities.components;
 import entities.screens.CartScreen;
 import entities.screens.HomeScreen;
 import entities.screens.MenuScreen;
-import entities.screens.Screen;
+import entities.screens.App;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,10 +16,10 @@ public class Navbar implements ActionListener {
     JButton goCartBtn = new JButton("C");
 
     JLabel bgLabel;
-    Screen screen;
+    App screen;
 
     JPanel navbar = new JPanel();
-    public Navbar(JLabel bgLabel, Screen screen) {
+    public Navbar(JLabel bgLabel, App screen) {
         this.bgLabel = bgLabel;
         this.screen = screen;
 

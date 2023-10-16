@@ -1,13 +1,17 @@
 package entities.classes;
 
+import java.util.ArrayList;
+
 public class Order {
     private Restaurant restaurant;
     private User user;
+    private ArrayList<Food> foods;
 
 
-    public Order(Restaurant restaurant, User user) {
+    public Order(Restaurant restaurant, User user, ArrayList<Food> foods) {
         this.restaurant = restaurant;
         this.user = user;
+        this.foods = foods;
     }
 
     public Restaurant getRestaurant() {

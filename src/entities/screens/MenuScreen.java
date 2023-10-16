@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuScreen extends Screen implements ActionListener {
+public class MenuScreen extends App {
     JButton addProdBtn = new JButton("+");
 
     JPanel panel = new JPanel();
@@ -22,7 +22,7 @@ public class MenuScreen extends Screen implements ActionListener {
         super(path);
 
         model = new DefaultTableModel(new Object[]{"ID", "Nome", "Preço"},0);
-        for (Food food : getFoods()) {
+        for (Food food : getCurrentRestaurant().getMenu()) {
             Object[] row = {food.getId(), food.getName(), food.getPrice()};
             model.addRow(row);
         }
@@ -37,22 +37,8 @@ public class MenuScreen extends Screen implements ActionListener {
         panel.setVisible(true);
         bgLabel.add(panel);
 
-        // ADD PRODUCT BUTTON
-        addProdBtn.setBounds(40, 730, 60,60);
-        addProdBtn.setBackground(Color.red);
-        addProdBtn.addActionListener(this);
-        add(addProdBtn);
-
         new Navbar(bgLabel, this);
 
         setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==addProdBtn) {
-            dispose();
-            new CreateProdScreen("createProduct-img.png");
-        }
     }
 }

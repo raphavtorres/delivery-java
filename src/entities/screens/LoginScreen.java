@@ -1,5 +1,6 @@
 package entities.screens;
 
+import entities.classes.Restaurant;
 import entities.classes.User;
 
 import javax.swing.*;
@@ -9,8 +10,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class LoginScreen extends Screen implements ActionListener {
+public class LoginScreen extends App implements ActionListener {
     JButton loginBtn = new JButton("Login");
+    JButton backBtn = new JButton("<-");
     JTextField userNameField = new JTextField();
     JPasswordField userPassField = new JPasswordField();
     HashMap<String, String> loginInfo;
@@ -31,6 +33,11 @@ public class LoginScreen extends Screen implements ActionListener {
         loginBtn.addActionListener(this);
         add(loginBtn);
 
+        backBtn.setBounds(20, 140, 70,50);
+        backBtn.setBackground(Color.green);
+        backBtn.addActionListener(this);
+        add(backBtn);
+
         setVisible(true);
     }
 
@@ -40,17 +47,31 @@ public class LoginScreen extends Screen implements ActionListener {
             String userName = userNameField.getText();
             String pass = String.valueOf(userPassField.getPassword());
             ArrayList<User> users = getUsers();
+            ArrayList<Restaurant> restaurants = getRestaurants();
 
             for(User user : users) {
-                if(user.getName().equals(userName) && user.getPassword().equals(pass)) {
+                if(user.getCpf().equals(userName) && user.getPassword().equals(pass)) {
                     setCurrentUser(user);
                     dispose();
-                    new MenuScreen("menu-img.png");
+                    new ChooseRestaurantScreen("chooseRestaurant-img.png");
+                }
+            }
+
+            for(Restaurant restaurant : restaurants) {
+                if(restaurant.getCnpj().equals(userName) && restaurant.getPassword().equals(pass)) {
+                    setCurrentRestaurant(restaurant);
+                    dispose();
+                    new MenuRestaurantScreen("menu-restaurant-img.png");
                 } else {
                     userNameField.setText("");
                     userPassField.setText("");
                 }
             }
+        }
+
+        else if(e.getSource()==backBtn) {
+            dispose();
+            new HomeScreen("home-img.png");
         }
     }
 }

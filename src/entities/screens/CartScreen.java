@@ -1,6 +1,7 @@
 package entities.screens;
 
 import entities.classes.Food;
+import entities.classes.Order;
 import entities.classes.User;
 import entities.components.Navbar;
 
@@ -9,10 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
-public class CartScreen extends Screen implements ActionListener {
+public class CartScreen extends App implements ActionListener {
     JTextField idProd = new JTextField();
     JButton addBtn = new JButton("ADICIONAR");
     JButton removeBtn = new JButton("REMOVER");
@@ -25,6 +24,7 @@ public class CartScreen extends Screen implements ActionListener {
     JScrollPane scrollPane;
     JLabel totalPriceLb = new JLabel();
     User user = getCurrentUser();
+    Float totalPrice = 0.0F;
 
     public CartScreen(String path) {
         super(path);
@@ -62,7 +62,7 @@ public class CartScreen extends Screen implements ActionListener {
             bgLabel.add(panel);
         }
 
-        totalPriceLb.setText("TOTAL");
+        totalPriceLb.setText(""+totalPrice);
         totalPriceLb.setBounds(140, 713, 178,50);
         totalPriceLb.setForeground(new Color(0x00FF00));
         bgLabel.add(totalPriceLb);
@@ -80,7 +80,7 @@ public class CartScreen extends Screen implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==addBtn) {
-            for(Food food : getFoods()) {
+            for(Food food : getCurrentRestaurant().getMenu()) {
                 if(idProd.getText().equals(String.valueOf(food.getId()))) {
                     user.setOrders(food);
                     System.out.println("PRODUTO ADICIONADO");
@@ -88,7 +88,7 @@ public class CartScreen extends Screen implements ActionListener {
                 }
             }
         } else if(e.getSource()==removeBtn) {
-            for(Food food : getFoods()) {
+            for(Food food : getCurrentRestaurant().getMenu()) {
                 if(idProd.getText().equals(String.valueOf(food.getId()))) {
                     user.getOrders().remove(food);
                     System.out.println("PRODUTO REMOVIDO");
@@ -96,6 +96,7 @@ public class CartScreen extends Screen implements ActionListener {
                 }
             }
         } else if (e.getSource()==endBtn) {
+//            new Order();
             dispose();
             new MenuScreen("menu-img.png");
         }
@@ -103,10 +104,14 @@ public class CartScreen extends Screen implements ActionListener {
     private void updateTableData() {
         idProd.setText("");
         model.setRowCount(0); // Cleans table data
+        totalPrice = 0.0F;
         for (Food food : user.getOrders()) {
             Object[] row = {food.getId(), food.getName(), food.getPrice()};
             model.addRow(row);
+            totalPrice += food.getPrice();
+            totalPriceLb.setText(""+totalPrice);
         }
+        totalPriceLb.repaint();
         table.repaint();
     }
 

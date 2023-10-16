@@ -1,6 +1,7 @@
 package entities.screens;
 
-import entities.classes.User;
+
+import entities.classes.Restaurant;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,31 +9,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class SignUpScreen extends App implements ActionListener {
-    JTextField userNameField = new JTextField();
-    JTextField cpfField = new JTextField();
-    JPasswordField userPassField = new JPasswordField();
+public class CreateRestaurantScreen extends App implements ActionListener {
+    JTextField restaurantFieldField = new JTextField();
+    JTextField cnpjField = new JTextField();
+    JPasswordField restaurantPassField = new JPasswordField();
     JTextField xAddressField = new JTextField();
     JTextField yAddressField = new JTextField();
     ArrayList<Integer> address = new ArrayList<>();
     JButton backBtn = new JButton("<-");
-    User user;
+    Restaurant restaurant;
 
     JButton signUpBtn = new JButton("CADASTRAR");
-    public SignUpScreen(String path) {
+    public CreateRestaurantScreen(String path) {
         super(path);
         // USERNAME
-        userNameField.setBounds(45, 310, 335, 45);
-        userNameField.setBackground(Color.red);
-        add(userNameField);
-        // CPF
-        cpfField.setBounds(45, 420, 335, 45);
-        cpfField.setBackground(Color.blue);
-        add(cpfField);
+        restaurantFieldField.setBounds(45, 310, 335, 45);
+        restaurantFieldField.setBackground(Color.red);
+        add(restaurantFieldField);
+        // CNPJ
+        cnpjField.setBounds(45, 420, 335, 45);
+        cnpjField.setBackground(Color.blue);
+        add(cnpjField);
         // PASSWORD
-        userPassField.setBounds(45, 530, 335, 45);
-        userPassField.setBackground(Color.green);
-        add(userPassField);
+        restaurantPassField.setBounds(45, 530, 335, 45);
+        restaurantPassField.setBackground(Color.green);
+        add(restaurantPassField);
         // X ADDRESS
         xAddressField.setBounds(80, 653, 120, 45);
         xAddressField.setBackground(Color.yellow);
@@ -58,17 +59,17 @@ public class SignUpScreen extends App implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==signUpBtn) {
-            String userName = userNameField.getText();
-            String cpf = cpfField.getText();
-            String password = String.valueOf(userPassField.getPassword());
+            String userName = restaurantFieldField.getText();
+            String cnpj = cnpjField.getText();
+            String password = String.valueOf(restaurantPassField.getPassword());
             int addressX = Integer.parseInt(xAddressField.getText());
             int addressY = Integer.parseInt(yAddressField.getText());
 
             address.add(addressX);
             address.add(addressY);
 
-            user = new User(userName, cpf, password, address);
-            this.setUsers(user);
+            restaurant = new Restaurant(userName, cnpj, password, address);
+            this.setRestaurants(restaurant);
             dispose();
             new LoginScreen("login-img.png");
         } else if(e.getSource()==backBtn) {
