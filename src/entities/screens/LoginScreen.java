@@ -52,6 +52,7 @@ public class LoginScreen extends App implements ActionListener {
             for(User user : users) {
                 if(user.getCpf().equals(userName) && user.getPassword().equals(pass)) {
                     setCurrentUser(user);
+                    setIsUserLogged(true);
                     dispose();
                     new ChooseRestaurantScreen("chooseRestaurant-img.png");
                 }
@@ -60,6 +61,7 @@ public class LoginScreen extends App implements ActionListener {
             for(Restaurant restaurant : restaurants) {
                 if(restaurant.getCnpj().equals(userName) && restaurant.getPassword().equals(pass)) {
                     setCurrentRestaurant(restaurant);
+                    setIsUserLogged(false);
                     dispose();
                     new MenuRestaurantScreen("menu-restaurant-img.png");
                 } else {

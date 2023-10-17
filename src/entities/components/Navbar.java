@@ -1,9 +1,7 @@
 package entities.components;
 
-import entities.screens.CartScreen;
-import entities.screens.HomeScreen;
-import entities.screens.MenuScreen;
-import entities.screens.App;
+import entities.classes.Order;
+import entities.screens.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -49,10 +47,14 @@ public class Navbar implements ActionListener {
             new HomeScreen("home-img.png");
         } else if(e.getSource()==goMenuBtn) {
             this.screen.dispose();
-            new MenuScreen("menu-img.png");
+            new MenuScreen("menu-user-img.png");
         } else if(e.getSource()==goCartBtn) {
             this.screen.dispose();
-            new CartScreen("cart-img.png");
+            if (App.isUserLogged) {
+                new CartScreen("cart-img.png");
+            } else {
+                new OrdersScreen("orders-img.png");
+            }
         }
     }
 }

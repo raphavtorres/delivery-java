@@ -23,7 +23,7 @@ public class HomeScreen extends App implements ActionListener {
         goToSignUpBtn.addActionListener(this);
         add(goToSignUpBtn);
 
-        goToCreateRest.setBounds(120, 820, 185,50);
+        goToCreateRest.setBounds(120, 843, 185,50);
         goToCreateRest.setBackground(Color.green);
         goToCreateRest.addActionListener(this);
         add(goToCreateRest);

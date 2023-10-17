@@ -9,16 +9,18 @@ public class Restaurant {
     private ArrayList<Integer> location;
 
     // LIST FOOD
-    public static Food food1 = new Food(1, "Calabresa", 42.53F);
-    public static Food food2 = new Food(2, "Portuguesa", 46.90F);
-    public static Food food3 = new Food(3, "Muçarela", 48.75F);
-    public static ArrayList<Food> menu = new ArrayList<>() {
-        {
-            add(food1);
-            add(food2);
-            add(food3);
-        }
-    };
+//    public static Food food1 = new Food(1, "Calabresa", 42.53F);
+//    public static Food food2 = new Food(2, "Portuguesa", 46.90F);
+//    public static Food food3 = new Food(3, "Muçarela", 48.75F);
+//    public static ArrayList<Food> menu = new ArrayList<>() {
+//        {
+//            add(food1);
+//            add(food2);
+//            add(food3);
+//        }
+//    };
+    public ArrayList<Food> menu = new ArrayList<>();
+    public ArrayList<Order> orders = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -36,58 +38,42 @@ public class Restaurant {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getCnpj() {
         return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
     }
 
     public ArrayList<Integer> getLocation() {
         return location;
     }
 
-    public void setLocation(ArrayList<Integer> location) {
-        this.location = location;
-    }
-
-    public ArrayList<Food> getMenu() {
-        return menu;
-    }
-
-    public void setMenu(ArrayList<Food> menu) {
-        this.menu = menu;
-    }
-
-    public static ArrayList<Food> getFoods() {
-        return menu;
-    }
-
-    public static void setFoods(Food food) {
-        menu.add(food);
-    }
 
     // PRINT MENU
     public ArrayList<Food> showMenu() {
-        return menu;
+        return this.menu;
     }
 
     // ADD FOOD TO MENU
     public void addFood(Food food) {
-        menu.add(food);
+        this.menu.add(food);
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    // ORDERS
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public void createOrder(Order order) {
+        this.orders.add(order);
+        for (Order o : this.orders) {
+            System.out.println("ORDER CREATED");
+            System.out.println(o.getUser());
+        }
     }
 
     // REMOVE FOOD TO MENU

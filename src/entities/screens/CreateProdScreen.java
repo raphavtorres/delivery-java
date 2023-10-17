@@ -35,7 +35,7 @@ public class CreateProdScreen extends App implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int id = getCurrentRestaurant().getMenu().size() + 1;
+        int id = getCurrentRestaurant().showMenu().size() + 1;
         String prodNameText = prodName.getText();
         Float price = Float.parseFloat(prodPrice.getText());
 

@@ -6,8 +6,6 @@ import entities.components.Navbar;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MenuScreen extends App {
     JButton addProdBtn = new JButton("+");
@@ -22,7 +20,7 @@ public class MenuScreen extends App {
         super(path);
 
         model = new DefaultTableModel(new Object[]{"ID", "Nome", "Preço"},0);
-        for (Food food : getCurrentRestaurant().getMenu()) {
+        for (Food food : getCurrentRestaurant().showMenu()) {
             Object[] row = {food.getId(), food.getName(), food.getPrice()};
             model.addRow(row);
         }

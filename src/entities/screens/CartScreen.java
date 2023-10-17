@@ -2,6 +2,7 @@ package entities.screens;
 
 import entities.classes.Food;
 import entities.classes.Order;
+import entities.classes.Restaurant;
 import entities.classes.User;
 import entities.components.Navbar;
 
@@ -24,6 +25,7 @@ public class CartScreen extends App implements ActionListener {
     JScrollPane scrollPane;
     JLabel totalPriceLb = new JLabel();
     User user = getCurrentUser();
+    Restaurant restaurant = getCurrentRestaurant();
     Float totalPrice = 0.0F;
 
     public CartScreen(String path) {
@@ -80,23 +82,23 @@ public class CartScreen extends App implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==addBtn) {
-            for(Food food : getCurrentRestaurant().getMenu()) {
+            for(Food food : restaurant.showMenu()) {
                 if(idProd.getText().equals(String.valueOf(food.getId()))) {
                     user.setOrders(food);
-                    System.out.println("PRODUTO ADICIONADO");
                     updateTableData();
                 }
             }
         } else if(e.getSource()==removeBtn) {
-            for(Food food : getCurrentRestaurant().getMenu()) {
+            for(Food food : restaurant.showMenu()) {
                 if(idProd.getText().equals(String.valueOf(food.getId()))) {
                     user.getOrders().remove(food);
-                    System.out.println("PRODUTO REMOVIDO");
                     updateTableData();
                 }
             }
         } else if (e.getSource()==endBtn) {
-//            new Order();
+            int id = getCurrentRestaurant().getOrders().size() + 1;
+            System.out.println("clicou finalizar");
+            restaurant.createOrder(new Order(id, restaurant, user, user.getOrders(), totalPrice));
             dispose();
             new MenuScreen("menu-user-img.png");
         }
