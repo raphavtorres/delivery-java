@@ -65,7 +65,7 @@ public class App extends JFrame {
                 return currentRestaurant.getName();
             }
         }
-        return "Teste";
+        return "";
     }
 
     public ArrayList<User> getUsers() {

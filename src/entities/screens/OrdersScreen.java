@@ -15,7 +15,7 @@ public class OrdersScreen extends App implements ActionListener {
     DefaultTableModel model;
     JTable table;
     JScrollPane scrollPane;
-    JButton delOrder = new JButton("FECHAR PEDIDO");
+    JButton delOrder = new JButton();
     public OrdersScreen(String path) {
         super(path);
 
@@ -28,15 +28,15 @@ public class OrdersScreen extends App implements ActionListener {
         table = new JTable(model);
         table.setDefaultEditor(Object.class, null);
         scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(350, 350));
+        scrollPane.setPreferredSize(new Dimension(350, 300));
 
-        panel.setBounds(45, 345, 350, 350);
+        panel.setBounds(45, 345, 350, 300);
         panel.add(scrollPane);
         panel.setVisible(true);
         bgLabel.add(panel);
 
-        delOrder.setBounds(122, 648, 182,50);
-        delOrder.setBackground(Color.red);
+        delOrder.setBounds(122, 770, 182,50);
+        delOrder.setOpaque(false);
         delOrder.addActionListener(this);
         add(delOrder);
 

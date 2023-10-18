@@ -7,7 +7,7 @@ public class User {
     private String cpf;
     private String password;
     private ArrayList<Integer> address;
-    private final ArrayList<Food> orders = new ArrayList<>();
+    private ArrayList<Food> orders = new ArrayList<>();
 
 
     public User(String name, String cpf, String password, ArrayList<Integer> address) {
@@ -51,8 +51,11 @@ public class User {
     public ArrayList<Food> getOrders() {
         return orders;
     }
+    public void emptyOrders() {
+        this.orders = new ArrayList<>();
+    }
 
-    public void setOrders(Food food) {
+    public void createOrder(Food food) {
         orders.add(food);
     }
 }

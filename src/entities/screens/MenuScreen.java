@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class MenuScreen extends App {
-    JButton addProdBtn = new JButton("+");
+    JButton addProdBtn = new JButton();
 
     JPanel panel = new JPanel();
 

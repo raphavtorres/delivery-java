@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ChooseRestaurantScreen extends App implements ActionListener {
 
-    JButton chooseBtn = new JButton("Choose");
+    JButton chooseBtn = new JButton();
     JComboBox<Restaurant> comboBox;
     DefaultComboBoxModel<Restaurant> comboBoxModel;
     JPanel panel = new JPanel();
@@ -27,7 +27,7 @@ public class ChooseRestaurantScreen extends App implements ActionListener {
         bgLabel.add(panel);
 
         chooseBtn.setBounds(122, 767, 178, 50);
-        chooseBtn.setBackground(Color.red);
+        chooseBtn.setOpaque(false);
         chooseBtn.addActionListener(this);
         add(chooseBtn);
 
@@ -39,11 +39,15 @@ public class ChooseRestaurantScreen extends App implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseBtn) {
-            Restaurant selectedRestaurant = comboBox.getItemAt(comboBox.getItemCount()-1);
+            Restaurant selectedRestaurant = (Restaurant) comboBox.getSelectedItem();
+//            Restaurant selectedRestaurant = comboBox.getItemAt(comboBox.getItemCount()-1);
             if (selectedRestaurant != null) {
                 setCurrentRestaurant(selectedRestaurant);
+                System.out.println(getCurrentRestaurant());
+                System.out.println(selectedRestaurant);
                 dispose();
-                new MenuRestaurantScreen("menu-user-img.png");
+                new MenuScreen("menu-user-img.png");
+
             }
         }
     }

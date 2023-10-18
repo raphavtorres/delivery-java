@@ -1,5 +1,6 @@
 package entities.screens;
 
+import entities.classes.Order;
 import entities.classes.Restaurant;
 import entities.classes.User;
 
@@ -12,7 +13,7 @@ import java.util.HashMap;
 
 public class LoginScreen extends App implements ActionListener {
     JButton loginBtn = new JButton("Login");
-    JButton backBtn = new JButton("<-");
+    JButton backBtn = new JButton("<<");
     JTextField userNameField = new JTextField();
     JPasswordField userPassField = new JPasswordField();
     HashMap<String, String> loginInfo;
@@ -20,21 +21,24 @@ public class LoginScreen extends App implements ActionListener {
     public LoginScreen(String path) {
         super(path);
 
-        userNameField.setBounds(45, 337, 335, 45);
-        userNameField.setBackground(Color.red);
+        userNameField.setBounds(45, 337, 280, 45);
+        userNameField.setBackground(new Color(235, 235, 235));
+        userNameField.setBorder(BorderFactory.createEmptyBorder());
         add(userNameField);
 
-        userPassField.setBounds(45, 446, 335, 45);
-        userPassField.setBackground(Color.red);
+        userPassField.setBounds(45, 446, 280, 45);
+        userPassField.setBackground(new Color(235, 235, 235));
+        userPassField.setBorder(BorderFactory.createEmptyBorder());
         add(userPassField);
 
         loginBtn.setBounds(122, 626, 183,50);
-        loginBtn.setBackground(Color.red);
+        loginBtn.setOpaque(false);
         loginBtn.addActionListener(this);
         add(loginBtn);
 
         backBtn.setBounds(20, 140, 70,50);
-        backBtn.setBackground(Color.green);
+        backBtn.setBackground(new Color(235, 235, 235));
+        backBtn.setBorder(BorderFactory.createEmptyBorder());
         backBtn.addActionListener(this);
         add(backBtn);
 
@@ -53,6 +57,7 @@ public class LoginScreen extends App implements ActionListener {
                 if(user.getCpf().equals(userName) && user.getPassword().equals(pass)) {
                     setCurrentUser(user);
                     setIsUserLogged(true);
+                    getCurrentUser().emptyOrders();
                     dispose();
                     new ChooseRestaurantScreen("chooseRestaurant-img.png");
                 }

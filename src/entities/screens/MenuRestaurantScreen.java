@@ -10,7 +10,7 @@ public class MenuRestaurantScreen extends MenuScreen implements ActionListener {
 
         // ADD PRODUCT BUTTON
         addProdBtn.setBounds(40, 730, 60,60);
-        addProdBtn.setBackground(Color.red);
+        addProdBtn.setOpaque(false);
         addProdBtn.addActionListener(this);
         add(addProdBtn);
     }

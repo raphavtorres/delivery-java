@@ -13,18 +13,17 @@ public class HomeScreen extends App implements ActionListener {
         super(path);
 
         goToLoginBtn.setBounds(120, 682, 185,50);
-//        loginBtn.setOpaque(false);  // btn transparent
-        goToLoginBtn.setBackground(Color.red);
+        goToLoginBtn.setOpaque(false);  // btn transparent
         goToLoginBtn.addActionListener(this);
         add(goToLoginBtn);
 
         goToSignUpBtn.setBounds(120, 762, 185,50);
-        goToSignUpBtn.setBackground(Color.red);
+        goToSignUpBtn.setOpaque(false);
         goToSignUpBtn.addActionListener(this);
         add(goToSignUpBtn);
 
         goToCreateRest.setBounds(120, 843, 185,50);
-        goToCreateRest.setBackground(Color.green);
+        goToCreateRest.setOpaque(false);
         goToCreateRest.addActionListener(this);
         add(goToCreateRest);
 

@@ -15,40 +15,46 @@ public class SignUpScreen extends App implements ActionListener {
     JTextField xAddressField = new JTextField();
     JTextField yAddressField = new JTextField();
     ArrayList<Integer> address = new ArrayList<>();
-    JButton backBtn = new JButton("<-");
+    JButton backBtn = new JButton("<<");
     User user;
 
-    JButton signUpBtn = new JButton("CADASTRAR");
+    JButton signUpBtn = new JButton();
     public SignUpScreen(String path) {
         super(path);
         // USERNAME
-        userNameField.setBounds(45, 310, 335, 45);
-        userNameField.setBackground(Color.red);
+        userNameField.setBounds(45, 310, 280, 45);
+        userNameField.setBackground(new Color(235, 235, 235));
+        userNameField.setBorder(BorderFactory.createEmptyBorder());
         add(userNameField);
         // CPF
-        cpfField.setBounds(45, 420, 335, 45);
-        cpfField.setBackground(Color.blue);
+        cpfField.setBounds(45, 419, 280, 45);
+        cpfField.setBackground(new Color(235, 235, 235));
+        cpfField.setBorder(BorderFactory.createEmptyBorder());
         add(cpfField);
         // PASSWORD
-        userPassField.setBounds(45, 530, 335, 45);
-        userPassField.setBackground(Color.green);
+        userPassField.setBounds(45, 528, 280, 45);
+        userPassField.setBackground(new Color(235, 235, 235));
+        userPassField.setBorder(BorderFactory.createEmptyBorder());
         add(userPassField);
         // X ADDRESS
-        xAddressField.setBounds(80, 653, 120, 45);
-        xAddressField.setBackground(Color.yellow);
+        xAddressField.setBounds(80, 653, 90, 45);
+        xAddressField.setBackground(new Color(235, 235, 235));
+        xAddressField.setBorder(BorderFactory.createEmptyBorder());
         add(xAddressField);
         // Y ADDRESS
-        yAddressField.setBounds(270, 653, 120, 45);
-        yAddressField.setBackground(Color.red);
+        yAddressField.setBounds(270, 653, 90, 45);
+        yAddressField.setBackground(new Color(235, 235, 235));
+        yAddressField.setBorder(BorderFactory.createEmptyBorder());
         add(yAddressField);
         // SIGNIN BUTTON
         signUpBtn.setBounds(122, 761, 183,50);
-        signUpBtn.setBackground(Color.red);
+        signUpBtn.setOpaque(false);
         signUpBtn.addActionListener(this);
         add(signUpBtn);
 
         backBtn.setBounds(20, 140, 70,50);
-        backBtn.setBackground(Color.green);
+        backBtn.setBackground(new Color(235, 235, 235));
+        backBtn.setBorder(BorderFactory.createEmptyBorder());
         backBtn.addActionListener(this);
         add(backBtn);
 

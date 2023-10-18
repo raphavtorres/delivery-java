@@ -14,9 +14,9 @@ import java.awt.event.ActionListener;
 
 public class CartScreen extends App implements ActionListener {
     JTextField idProd = new JTextField();
-    JButton addBtn = new JButton("ADICIONAR");
-    JButton removeBtn = new JButton("REMOVER");
-    JButton endBtn = new JButton("FINALIZAR");
+    JButton addBtn = new JButton();
+    JButton removeBtn = new JButton();
+    JButton endBtn = new JButton();
 
     JPanel panel = new JPanel();
 
@@ -24,25 +24,28 @@ public class CartScreen extends App implements ActionListener {
     JTable table;
     JScrollPane scrollPane;
     JLabel totalPriceLb = new JLabel();
+    JLabel totalPriceFreightLb = new JLabel();
     User user = getCurrentUser();
     Restaurant restaurant = getCurrentRestaurant();
     Float totalPrice = 0.0F;
+    Float freight = 0.0F;
 
     public CartScreen(String path) {
         super(path);
 
-        idProd.setBounds(40, 302, 100,40);
-        idProd.setBackground(Color.blue);
+        idProd.setBounds(40, 302, 80,40);
+        idProd.setBackground(new Color(235, 235, 235));
+        idProd.setBorder(BorderFactory.createEmptyBorder());
         idProd.addActionListener(this);
         add(idProd);
 
         addBtn.setBounds(170, 304, 110,40);
-        addBtn.setBackground(Color.red);
+        addBtn.setOpaque(false);
         addBtn.addActionListener(this);
         add(addBtn);
 
         removeBtn.setBounds(300, 304, 110,40);
-        removeBtn.setBackground(Color.red);
+        removeBtn.setOpaque(false);
         removeBtn.addActionListener(this);
         add(removeBtn);
 
@@ -64,15 +67,28 @@ public class CartScreen extends App implements ActionListener {
             bgLabel.add(panel);
         }
 
+        int xRest = getCurrentRestaurant().getLocation().get(0);
+        int yRest = getCurrentRestaurant().getLocation().get(1);
+        int xUser = getCurrentUser().getAddress().get(0);
+        int yUser = getCurrentUser().getAddress().get(1);
+        freight = (float) Math.abs((xRest - xUser) + (yRest - yUser) / 2);
+
+        totalPriceFreightLb.setText(""+freight);
+        totalPriceFreightLb.setBounds(120, 713, 178,50);
+        totalPriceFreightLb.setForeground(new Color(0x00FF00));
+        bgLabel.add(totalPriceFreightLb);
+
         totalPriceLb.setText(""+totalPrice);
-        totalPriceLb.setBounds(140, 713, 178,50);
+        totalPriceLb.setBounds(330, 713, 178,50);
         totalPriceLb.setForeground(new Color(0x00FF00));
         bgLabel.add(totalPriceLb);
 
         endBtn.setBounds(122, 767, 178,50);
-        endBtn.setBackground(Color.red);
+        endBtn.setOpaque(false);
         endBtn.addActionListener(this);
         add(endBtn);
+
+
 
         new Navbar(bgLabel, this);
 
@@ -84,7 +100,7 @@ public class CartScreen extends App implements ActionListener {
         if(e.getSource()==addBtn) {
             for(Food food : restaurant.showMenu()) {
                 if(idProd.getText().equals(String.valueOf(food.getId()))) {
-                    user.setOrders(food);
+                    user.createOrder(food);
                     updateTableData();
                 }
             }
@@ -97,8 +113,7 @@ public class CartScreen extends App implements ActionListener {
             }
         } else if (e.getSource()==endBtn) {
             int id = getCurrentRestaurant().getOrders().size() + 1;
-            System.out.println("clicou finalizar");
-            restaurant.createOrder(new Order(id, restaurant, user, user.getOrders(), totalPrice));
+            restaurant.createOrder(new Order(id, restaurant, user, user.getOrders(), totalPrice+freight));
             dispose();
             new MenuScreen("menu-user-img.png");
         }
@@ -107,11 +122,12 @@ public class CartScreen extends App implements ActionListener {
         idProd.setText("");
         model.setRowCount(0); // Cleans table data
         totalPrice = 0.0F;
+
         for (Food food : user.getOrders()) {
             Object[] row = {food.getId(), food.getName(), food.getPrice()};
             model.addRow(row);
             totalPrice += food.getPrice();
-            totalPriceLb.setText(""+totalPrice);
+            totalPriceLb.setText(""+(totalPrice+freight));
         }
         totalPriceLb.repaint();
         table.repaint();
